@@ -11,5 +11,8 @@
     "sass"
   ],
   "author": "Svetik-K",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.27.0"
+  }
 }
