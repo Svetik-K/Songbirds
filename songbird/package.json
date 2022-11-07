@@ -1,0 +1,15 @@
+{
+  "name": "songbird",
+  "version": "1.0.0",
+  "description": "sonbird quiz",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "js",
+    "sass"
+  ],
+  "author": "Svetik-K",
+  "license": "ISC"
+}
