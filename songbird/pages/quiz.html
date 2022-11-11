@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/sass/style.css">
   <title>Quiz</title>
 </head>
 <body>
@@ -17,19 +18,21 @@
       </div>
       <div class="quiz-header__questions">
         <ul class="questions">
-          <li class="questions__item"><button class="questions__button"></button></li>
-          <li class="questions__item"><button class="questions__button"></button></li>
-          <li class="questions__item"><button class="questions__button"></button></li>
-          <li class="questions__item"><button class="questions__button"></button></li>
-          <li class="questions__item"><button class="questions__button"></button></li>
-          <li class="questions__item"><button class="questions__button"></button></li>
+          <li class="questions__item"><button class="questions__button">Разминка</button></li>
+          <li class="questions__item"><button class="questions__button">Воробьиные</button></li>
+          <li class="questions__item"><button class="questions__button">Лесные птицы</button></li>
+          <li class="questions__item"><button class="questions__button">Певчие птицы</button></li>
+          <li class="questions__item"><button class="questions__button">Хищные птицы</button></li>
+          <li class="questions__item"><button class="questions__button">Морские птицы</button></li>
         </ul>
       </div>
     </header>
     <main class="quiz-main">
       <div class="question quiz-main__qustion">
         <div class="question__picture"></div>
-        <div class="question__sound"></div>
+        <div class="question__sound">
+          <audio src="#" class="question__audio"></audio>
+        </div>
       </div>
       <div class="quiz-main__answers">
         <ul class="answers">
@@ -46,7 +49,9 @@
             <div class="bird-info__other">
               <div class="bird-info__name"></div>
               <div class="bird-info__latin"></div>
-              <div class="bird-info__sound"></div>
+              <div class="bird-info__sound">
+                <audio src="#" class="bird-info__audio"></audio>
+              </div>
             </div>
           </div>
           <div class="bird-info__description"></div>
