@@ -1,0 +1,83 @@
+.start-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.start-nav {
+  display: flex;
+
+  &__item {
+    padding-left: 40px;
+  }
+
+  &__link {
+    @include font(1.8rem, 2.2rem, 400);
+    color: $color-light;
+    text-decoration: none;
+    transition: .5s;
+    
+    &:hover {
+      color: $color-violet-pale;
+    }
+  }
+}
+
+.start-main {
+  padding: 100px 0;
+}
+
+.quiz-start {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: $color-violet-pale;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+  
+  &::before {
+    content: '';
+    background-image: url(../assets/img/green_bird.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: -50px;
+    left: -70px;
+  }
+
+  &::after {
+    content: '';
+    background-image: url(../assets/img/yellow_parrot.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 100px;
+    left: 200px;
+  }
+
+  &__link {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: $color-pink-add;
+    color: $color-title;
+    @include font(2.8rem, 3.2rem, 700);
+    display: flex;
+    text-align: center;
+    align-items: center;
+    text-decoration: none;
+  }
+}
