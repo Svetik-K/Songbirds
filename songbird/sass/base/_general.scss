@@ -3,7 +3,8 @@ body {
   height: 100%;
   font-family: $font-main;
   font-size: 10px;
-	background: $color-pink-add;
+	background: rgb(254,219,207);
+  background: radial-gradient(circle, rgba(254,219,207,1) 0%, rgba(209,168,212,1) 100%);
 }
 
 .logo-title {
@@ -21,5 +22,12 @@ body {
 	display: flex;
 	flex-direction: column;
 	margin: 0 auto;
-  padding: 30px;
+
+  &_start {
+    padding: 30px;
+  }
+
+  &_quiz {
+    padding: 20px 100px;
+  }
 }

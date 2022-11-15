@@ -55,12 +55,124 @@ button {
   outline: none;
 }
 
+.questions__button {
+  width: 100%;
+  height: 50px;
+  border-radius: 15px;
+  border: none;
+  font-family: "Lato", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  font-weight: 400;
+  font-style: normal;
+  color: #fffcf7;
+  background-color: #c8afd7;
+  cursor: pointer;
+  transition: .5s;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.questions__button:hover {
+  background-color: #9a3f9a;
+}
+
+.questions__button_active {
+  background-color: #9a3f9a;
+}
+
+.main-player__button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+  transition: .5s;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.main-player__button:hover {
+  transform: scale(1.1);
+}
+
+.main-player__button-sound {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  transition: .5s;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.main-player__button-sound:hover {
+  transform: scale(1.1);
+}
+
+.button_play {
+  background-image: url(../../assets/svg/play.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.button_pause {
+  background-image: url(../../assets/svg/pause.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.button_volume-up {
+  background-image: url(../../assets/svg/volume-up.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.answers__button {
+  width: 100%;
+  position: relative;
+  height: 45px;
+  border-radius: 10px;
+  border: none;
+  font-family: "Lato", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  font-weight: 400;
+  font-style: normal;
+  color: #9a3f9a;
+  background-color: #f7dae6;
+  cursor: pointer;
+  transition: .5s;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  text-align: left;
+  padding-left: 60px;
+}
+
+.answers__button:hover {
+  background-color: #e99bbc;
+}
+
+.answers__button::before {
+  content: '';
+  position: absolute;
+  top: 14.5px;
+  left: 20px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fffcf7;
+  border: 1px solid #fedbcf;
+}
+
 body {
   width: 100%;
   height: 100%;
   font-family: "Lato", sans-serif;
   font-size: 10px;
-  background: #f7dae6;
+  background: #fedbcf;
+  background: radial-gradient(circle, #fedbcf 0%, #d1a8d4 100%);
 }
 
 .logo-title {
@@ -78,33 +190,104 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+}
+
+.page-container_start {
   padding: 30px;
 }
 
-body {
+.page-container_quiz {
+  padding: 20px 100px;
+}
+
+.main-player {
   width: 100%;
-  height: 100%;
-  font-family: "Lato", sans-serif;
-  font-size: 10px;
-  background: #f7dae6;
 }
 
-.logo-title {
-  font-family: "Lobster", cursive;
-  font-size: 3.8rem;
-  color: #fffcf7;
-  background: transparent;
-  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.5);
+.main-player__upper-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
-.page-container {
-  max-width: 1920px;
-  min-height: 100%;
-  position: relative;
+.main-player__slider-wrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  padding: 30px;
+  justify-content: flex-end;
+}
+
+.main-player__slider {
+  width: 100%;
+  position: relative;
+  -webkit-appearance: none;
+  height: 12px;
+  border-radius: 6px;
+  background-color: #fffcf7;
+  margin-bottom: 5px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.main-player__slider::-webkit-slider-runnable-track {
+  background: #fffcf7;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.main-player__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #9a3f9a;
+  box-shadow: -1205px 0 0 1200px #9a3f9a;
+}
+
+.main-player__time-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-player__volume-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.main-player__volume-slider {
+  width: 30%;
+  -webkit-appearance: none;
+  height: 12px;
+  border-radius: 6px;
+  background-color: #fffcf7;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.main-player__volume-slider::-webkit-slider-runnable-track {
+  cursor: pointer;
+  color: #9a3f9a;
+  border-radius: 6px;
+}
+
+.main-player__volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #9a3f9a;
+  box-shadow: -405px 0 0 400px #9a3f9a;
+}
+
+.time {
+  font-size: 0.8rem;
+  line-height: 1rem;
+  font-weight: 400;
+  font-style: normal;
+  color: #fffcf7;
 }
 
 .start-header {
@@ -251,7 +434,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .quiz-header__score {
@@ -260,7 +443,7 @@ body {
   line-height: 2.2rem;
   font-weight: 700;
   font-style: normal;
-  color: #2f1523;
+  color: #fffcf7;
   text-align: left;
 }
 
@@ -268,33 +451,146 @@ body {
   width: 100%;
 }
 
+.logo-title_quiz::after {
+  content: '';
+  background-image: url(../assets/img/yellow_parrot.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: -15px;
+  left: 290px;
+}
+
 .questions {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 30px;
 }
 
 .questions__item {
   width: 15.8%;
 }
 
-.questions__button {
+.question {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  background-color: rgba(200, 175, 215, 0.3);
+  border-radius: 15px;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  margin-bottom: 30px;
+}
+
+.question__picture-wrapper {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.question__picture {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  background: #fffcf7;
+  background: linear-gradient(180deg, #fffcf7 20%, #f7dae6 100%);
+  margin: 0 auto;
+}
+
+.question__image {
+  display: block;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+
+.question__sound {
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 30px;
+}
+
+.question__bird-name {
+  width: 100%;
+  font-size: 2.2rem;
+  line-height: 2.6rem;
+  font-weight: 700;
+  font-style: normal;
+  color: #fffcf7;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f7dae6;
+  margin-bottom: 30px;
+}
+
+.quiz-main {
+  margin-bottom: 30px;
+}
+
+.quiz-main__answers {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.answers {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background-color: rgba(200, 175, 215, 0.3);
+  border-radius: 15px;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.answers__item {
+  width: 90%;
+  margin-bottom: 3px;
+}
+
+.bird-info {
+  width: 68%;
+  height: 300px;
+  background-color: rgba(200, 175, 215, 0.3);
+  border-radius: 15px;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.quiz-footer {
+  width: 100%;
+}
+
+.quiz-footer__button {
   width: 100%;
   height: 50px;
   border-radius: 15px;
   border: none;
   font-family: "Lato", sans-serif;
-  font-size: 1.4rem;
-  line-height: 1.8rem;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
   font-weight: 400;
   font-style: normal;
   color: #fffcf7;
   background-color: #c8afd7;
   cursor: pointer;
   transition: .5s;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
-.questions__button:hover {
+.quiz-footer__button:hover {
   background-color: #9a3f9a;
 }
 /*# sourceMappingURL=style.css.map */

@@ -4,11 +4,14 @@ $color-light: #fffcf7;
 $color-pink-add: #f7dae6;
 $color-title: #2f1523;
 $color-violet-pale: #c8afd7;
+$color-violet-pale-rgba: rgba(200, 175, 215, 0.3);
 $color-violet-dark: #9a3f9a;
 $color-black: #000000;
 
 $font-main: 'Lato', sans-serif;
 $font-logo: 'Lobster', cursive;
+
+$shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 
 @mixin font($size, $height, $weight, $style: normal) {
   font-size: $size;

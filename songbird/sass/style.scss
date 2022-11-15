@@ -4,8 +4,10 @@
 @import 'abstracts/variables';
 @import 'abstracts/reset';
 
+@import 'base/buttons';
 @import 'base/general';
-@import 'base/general';
+
+@import 'components/player';
 
 @import 'pages/index';
 @import 'pages/quiz';
