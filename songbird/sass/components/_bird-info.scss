@@ -1,0 +1,73 @@
+.bird-info {
+  width: 58%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-violet-pale-rgba;
+  border-radius: 15px;
+  -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
+  padding: 20px 30px;
+
+  &__basic {
+    width: 100%;
+    display: flex;
+    margin-bottom: 30px;
+  }
+
+  &__picture-wrapper {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  &__picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: $shadow; 
+    box-shadow: $shadow;
+    background: linear-gradient(180deg, rgba(255, 252, 247, 1) 0%, rgba(247, 218, 230, 1) 100%);
+    margin: 0 auto;
+  }
+
+  &__image {
+    display: block;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+
+  &__other {
+    width: 75%;
+    padding-left: 30px;
+  }
+
+  &__name {
+    width: 100%;
+    @include font(2.2rem, 2.4rem, 500);
+    color: $color-violet-dark;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $color-pink-add;
+  }
+
+  &__latin {
+    width: 100%;
+    @include font(1.8rem, 2.2rem, 500);
+    color: $color-violet-dark;
+    border-bottom: 1px solid $color-pink-add;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+  }
+
+  &__description {
+    @include font(1.4rem, 1.8rem, 500);
+    color: lighten($color-title, 10%);
+    text-align: justify;
+    overflow: auto;
+  }
+}

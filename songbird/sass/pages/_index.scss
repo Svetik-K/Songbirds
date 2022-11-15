@@ -13,7 +13,7 @@
   }
 
   &__link {
-    @include font(1.8rem, 2.2rem, 400);
+    @include font(2.8rem, 2.8rem, 500);
     color: $color-light;
     text-decoration: none;
     transition: .5s;
@@ -73,11 +73,16 @@
     border-radius: 50%;
     background-color: $color-pink-add;
     color: $color-title;
-    @include font(2.8rem, 3.2rem, 700);
+    @include font(4.8rem, 4.8rem, 700);
     display: flex;
     text-align: center;
     align-items: center;
     text-decoration: none;
+    transition: 0.5s;
+
+    &:hover {
+      color: $color-violet-dark;
+    }
   }
 }
 
@@ -111,7 +116,7 @@
 
 .github-link {
   text-decoration: none;
-  @include font(1.8rem, 2.2rem, 700);
+  @include font(2.8rem, 2.8rem, 700);
   color: darken($color-violet-dark, 20%);
 
   &__image {

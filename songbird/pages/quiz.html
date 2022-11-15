@@ -14,7 +14,7 @@
         <div class="quiz-header__logo">
           <h1 class="logo-title logo-title_quiz">Songbird</h1>
         </div>
-        <div class="quiz-header__score">Score:</div>
+        <div class="quiz-header__score">Score: <span class="player-score">0</span></div>
       </div>
       <div class="quiz-header__questions">
         <ul class="questions">
@@ -37,20 +37,20 @@
         <div class="question__sound">
           <div class="question__bird-name">******</div>
           <div class="question__player main-player">
-            <audio src="https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC512582-190604_1087_Grus_tok.mp3" class="question__audio"></audio>
+            <audio src="https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC512582-190604_1087_Grus_tok.mp3" class="main-player__audio"></audio>
             <div class="main-player__upper-wrapper">
               <button class="main-player__button button_play"></button>
               <div class="main-player__slider-wrapper">
                 <input type="range" class="main-player__slider" max="100" value="0">
                 <div class="main-player__time-wrapper">
-                  <span class="time time_current">0:00</span>
-                  <span class="time time_duration">0:00</span>
+                  <span class="time time_current">00:00</span>
+                  <span class="time time_duration">00:00</span>
                 </div>
               </div>
             </div>
             <div class="main-player__volume-wrapper">
-              <input type="range" class="main-player__volume-slider" max="100" value="20">
               <button class="main-player__button-sound button_volume-up"></button>
+              <input type="range" class="main-player__volume-slider" max="100" value="20">  
             </div>
           </div>  
         </div>
@@ -66,16 +66,34 @@
         </ul>
         <div class="bird-info">
           <div class="bird-info__basic">
-            <div class="bird-info__pictire"></div>
+            <div class="bird-info__picture-wrapper">
+              <div class="bird-info__picture">
+                <img src="https://live.staticflickr.com/65535/49221158846_b0b69a58f1.jpg" class="bird-info__image" alt="">
+              </div>
+            </div>  
             <div class="bird-info__other">
-              <div class="bird-info__name"></div>
-              <div class="bird-info__latin"></div>
-              <div class="bird-info__sound">
-                <audio src="#" class="bird-info__audio"></audio>
+              <div class="bird-info__name">Журавль</div>
+              <div class="bird-info__latin">Grus grus</div>
+              <div class="bird-info__player info-player">
+                <audio src="https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC512582-190604_1087_Grus_tok.mp3" class="info-player__audio"></audio>
+                <div class="info-player__upper-wrapper">
+                  <button class="info-player__button button_play"></button>
+                  <div class="info-player__slider-wrapper">
+                    <input type="range" class="info-player__slider" max="100" value="0">
+                    <div class="info-player__time-wrapper">
+                      <span class="info-time info-time_current">00:00</span>
+                      <span class="info-time info-time_duration">00:00</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="info-player__volume-wrapper">
+                  <button class="info-player__button-sound button_volume-up"></button>
+                  <input type="range" class="info-player__volume-slider" max="100" value="20">  
+                </div>
               </div>
             </div>
           </div>
-          <div class="bird-info__description"></div>
+          <div class="bird-info__description">Звуки, издаваемые журавлем, похожи на звонкое «кур-лы – кур-лы». Журавли чаще всего поют дуэтом – одна птица начинает запев со слога «кур», а вторая подхватывает «лы». Если птица поёт одна, то она издает только звук «кур».</div>
         </div>
       </div>
     </main>
