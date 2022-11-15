@@ -9,6 +9,15 @@
   box-shadow: $shadow;
   padding: 20px 30px;
 
+  @media all and(max-width: 1280px) {
+    width: 68%;
+  }
+
+  @media all and(max-width: 768px) {
+    width: 100%;
+    padding: 20px;
+  }
+
   &__basic {
     width: 100%;
     display: flex;
@@ -20,6 +29,10 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+
+    @media all and(max-width: 1000px) {
+      width: 35%;
+    }
   }
 
   &__picture {
@@ -31,20 +44,33 @@
     align-items: center;
     -webkit-box-shadow: $shadow; 
     box-shadow: $shadow;
-    background: linear-gradient(180deg, rgba(255, 252, 247, 1) 0%, rgba(247, 218, 230, 1) 100%);
+    background: linear-gradient(180deg, rgba(255, 252, 247, 1) 0%, rgba(247, 191, 213, 1) 100%);
     margin: 0 auto;
+
+    @media all and(max-width: 490px) {
+      width: 100px;
+      height: 100px;
+    }
   }
 
   &__image {
     display: block;
-    width: 90px;
-    height: 90px;
+    width: 75%;
+    height: 75%;
     border-radius: 50%;
   }
 
   &__other {
     width: 75%;
     padding-left: 30px;
+
+    @media all and(max-width: 1000px) {
+      width: 65%;
+    }
+
+    @media all and(max-width: 490px) {
+      padding-left: 20px;
+    }
   }
 
   &__name {

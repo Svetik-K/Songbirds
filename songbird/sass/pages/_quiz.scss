@@ -1,12 +1,18 @@
 .quiz-header {
   width: 100%;
-    
+  
   &__upper {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 30px;
+
+    @media all and(max-width: 490px) {
+      flex-direction: column;
+      align-items: center;
+      row-gap: 20px;
+    }
   }
 
   &__score {
@@ -18,6 +24,23 @@
   &__questions {
     width: 100%;
   }
+
+  &__logo {
+    position: relative;
+
+    &::before {
+      content: '';
+      background-image: url(../assets/img/yellow_parrot.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      display: block;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: -30px;
+      left: 170px;
+    }
+  }
 }
 
 .player-score {
@@ -25,27 +48,23 @@
   padding-left: 20px;
 }
 
-.logo-title_quiz::after {
-  content: '';
-  background-image: url(../assets/img/yellow_parrot.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  display: block;
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: -15px;
-  left: 265px;
-}
-
 .questions {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+
+  @media all and(max-width: 768px) {
+    flex-wrap: wrap;
+    row-gap: 7px;
+  }
 
   &__item {
     width: 15.8%;
+
+    @media all and(max-width: 768px) {
+      width: 32%;
+    }
   }
 }
 
@@ -58,13 +77,22 @@
   border-radius: 15px;
   -webkit-box-shadow: $shadow;
   box-shadow: $shadow;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  padding: 20px 30px;
+
+  @media all and(max-width: 768px) {
+    padding: 20px;
+  }
 
   &__picture-wrapper {
     width: 30%;
     height: 100%;
     display: flex;
     align-items: center;
+
+    @media all and(max-width: 768px) {
+      width: 40%;
+    }
   }
 
   &__picture {
@@ -76,14 +104,24 @@
     align-items: center;
     -webkit-box-shadow: $shadow; 
     box-shadow: $shadow;
-    background: linear-gradient(180deg, rgba(255, 252, 247, 1) 0%, rgba(247, 218, 230, 1) 100%);
+    background: linear-gradient(180deg, rgba(255, 252, 247, 1) 0%, rgb(247, 191, 213) 100%);
     margin: 0 auto;
+
+    @media all and(max-width: 1000px) {
+      width: 150px;
+      height: 150px;
+    }
+
+    @media all and(max-width: 490px) {
+      width: 110px;
+      height: 110px;
+    }
   }
 
   &__image {
     display: block;
-    width: 160px;
-    height: 160px;
+    width: 75%;
+    height: 75%;
     border-radius: 50%;
   }
 
@@ -93,7 +131,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 30px;
+    padding-left: 30px;
+
+    @media all and(max-width: 490px) {
+      padding-left: 20px;
+    }
+
+    @media all and(max-width: 768px) {
+      width: 60%;
+    }
   }
 
   &__bird-name {
@@ -107,12 +153,16 @@
 }
 
 .quiz-main {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   
   &__answers {
     width: 100%;
     display: flex;
     justify-content: space-between;
+
+    @media all and(max-width: 768px) {
+      flex-direction: column;
+    }
   }
 }
 
@@ -128,8 +178,21 @@
   -webkit-box-shadow: $shadow;
   box-shadow: $shadow;
 
+  @media all and(max-width: 1280px) {
+    width: 30%;
+  }
+
+  @media all and(max-width: 768px) {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
   &__item {
     width: 90%;
     margin-bottom: 3px;
+
+    @media all and(max-width: 768px) {
+      width: 96%;
+    }
   }
 }
