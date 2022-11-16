@@ -301,4 +301,4 @@ const birdsData = [
     ]
   ];
   
-  export default birdsData;
+ export { birdsData };

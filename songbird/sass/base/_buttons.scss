@@ -21,11 +21,11 @@
     &:hover {
       background-color: $color-violet-dark;
     }
-
-    &_active {
-      background-color: $color-violet-dark;
-    }
   }
+}
+
+.button_active {
+  background-color: $color-violet-dark;
 }
 
 .main-player {
