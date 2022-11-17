@@ -1,10 +1,17 @@
 import { birdsData } from './birds.js';
 
+// audio players
 const audioMain = document.querySelector('.main-player__audio');
 const buttonPlayMain = document.querySelector('.main-player__button');
+const audioInfo = document.querySelector('.info-player__audio');
+const buttonPlayInfo = document.querySelector('.info-player__button');
 
 buttonPlayMain.addEventListener('click', () => {
   audioMain.play();
+})
+
+buttonPlayInfo.addEventListener('click', () => {
+  audioInfo.play();
 })
 
 
@@ -14,13 +21,12 @@ const categoryButtons = document.querySelectorAll('.questions__button');
 const answers = document.querySelector('.answers');
 const answersButtons = document.querySelectorAll('.answers__button');
 const nextButton = document.querySelector('.quiz-footer__button');
+const score = document.querySelector('.player-score');
 
-let categoryArray;
-let correctAnswer;
-let attemptCounter;
+let questionArray;
+let count;
 let question;
-let currentId;
-
+let correctAnswer;
 
 // listens buttons for different categories
 categories.addEventListener('click', (e) => {
@@ -39,17 +45,27 @@ categories.addEventListener('click', (e) => {
       }
     }
     e.target.classList.add('button_active');
-
     clearIndicators();
-    categoryArray = returnCategory(birdsData, categoryName); // returns an array from birdsData
-    const shuffledArr = categoryArray.sort((a, b) => 0.5 - Math.random()); // shuffles initial array
-    loadQuestion(shuffledArr[0]); // loads first index in shuffled array
-    question = shuffledArr[0]; // the first question now is the first item in shuffled array
-    correctAnswer = shuffledArr[0].name;
-    currentId = 0; // id === 0, will be increased with next question loaded
-    loadAnswers(categoryArray); // loads birds names into answers buttons
+    score.textContent = 0;
+    answers.classList.remove('inactive');
+    questionArray = createShuffledArray(birdsData, categoryName);
+    showFirstQuestion(questionArray);
+    count = 1;
+    nextButton.disabled = true;
   }
 })
+
+// listens clicks on Next button
+nextButton.addEventListener('click', (e) => {
+  console.log(questionArray)
+  if(count === 5) {
+    nextButton.disabled = true;
+    return;
+  }
+  loadNextQuestion(questionArray, count);
+  count++;
+  e.preventDefault();
+});
 
 // listen clicks on answers
 answers.addEventListener('click', (e) => {
@@ -57,21 +73,41 @@ answers.addEventListener('click', (e) => {
   if(answersBlock.classList.contains('answers')) {
     const birdName = e.target.textContent;
     if(birdName === correctAnswer) {
-      showAnswer(question);
-      loadBirdInfo(question);
+      showAnswer(questionArray[count - 1]);
+      loadBirdInfo(questionArray[count - 1]);
       e.target.classList.add('correct');
+      let resultScore = countScore();
+      let curResult = parseInt(score.textContent);
+      score.textContent = curResult + resultScore;
       audioMain.pause();
-      
+      answersBlock.classList.add('inactive');
+      nextButton.disabled = false;
     } else {
       e.target.classList.add('wrong');
-      attemptCounter += 1;
-      // TODO: add red indicator to button
-      // handle attempts
+      for(let bird of questionArray) {
+        if(bird.name === e.target.textContent) {
+          loadBirdInfo(bird);
+        }
+      }
     }
   }
 })
 
-nextButton.addEventListener('click', loadNextQuestion);
+// shows the first question after choosing a category
+function showFirstQuestion(questionArray) {
+  question = questionArray[0]; 
+  correctAnswer = questionArray[0].name;
+  loadQuestion(questionArray[0]);
+  loadAnswers(questionArray); 
+}
+
+// returns shuffled array
+function createShuffledArray(birdsData, categoryName) {
+  const categoryArray = returnCategory(birdsData, categoryName); // returns an array from birdsData
+  let copyArr = [...categoryArray];
+  const shuffledArr = copyArr.sort((a, b) => 0.5 - Math.random()); // shuffles initial array
+  return shuffledArr;
+}
 
 // returns category according to the button clicked
 function returnCategory(birdsData, categoryName) {
@@ -93,25 +129,26 @@ function returnCategory(birdsData, categoryName) {
 
 // loads question to the question block
 function loadQuestion(bird) {
+  const birdSound = document.querySelector('.main-player__audio');
   const questionImage = document.querySelector('.question__image');
   questionImage.src = '../assets/img/question.png';
-  questionImage.alt = bird.name;
   const birdName = document.querySelector('.question__bird-name');
   birdName.textContent = '********';
-  const birdSound = document.querySelector('.main-player__audio');
   birdSound.addEventListener('loadedmetadata', () => {
     const trackDuration = document.querySelector('.time_duration');
     const duration = setTrackDuration(birdSound);
-    trackDuration.innerHTML = duration;
-  })
-  birdSound.src = bird.audio;
+    trackDuration.innerHTML = duration;  
+  }) 
+  birdSound.src = bird.audio; 
+  questionImage.alt = bird.name;
 }
 
 // load answers variants
-function loadAnswers(categoryArray) {
-  const shuffledArray = categoryArray.sort((a, b) => 0.5 - Math.random());
+function loadAnswers(arr) {
+  let cloneArr = [...arr];
+  const shuffledArray = cloneArr.sort((a, b) => 0.5 - Math.random());
   answersButtons.forEach((button, index) => {
-    button.textContent = categoryArray[index].name;
+    button.textContent = shuffledArray[index].name;
   }) 
 }
 
@@ -158,20 +195,7 @@ function setTrackDuration(audio) {
   return `${minutes}:${seconds}`;
 }
 
-
-function loadNextQuestion() {
-  attemptCounter = 0;
-  clearIndicators();
-}
-
-function handleAttempts(attempts) {
-
-}
-
-function addScore(attempts) {
-
-}
-
+// clears buttons' indicators
 function clearIndicators() {
   const answersButtons = document.querySelectorAll('.answers__button');
   for(let button of answersButtons) {
@@ -185,3 +209,42 @@ function clearIndicators() {
     }
   }
 }
+
+// loads next question from the shuffled array
+function loadNextQuestion(questionArray, count) {
+  const answersBlock = document.querySelector('.answers');
+  if(answersBlock.classList.contains('inactive')) {
+    answersBlock.classList.remove('inactive');
+  }
+  clearIndicators();
+  loadQuestion(questionArray[count]);
+  loadAnswers(questionArray);
+  correctAnswer = questionArray[count].name;
+  nextButton.disabled = true;
+}
+
+// returns the number of earned scores
+function countScore() {
+  let counter = 0;
+  const answerButtons = document.querySelectorAll('.answers__button');
+  for(let button of answerButtons) {
+    if(button.classList.contains('wrong')) {
+      counter++;
+    }
+  }
+  switch(counter) {
+    case 5:
+      return 0;
+    case 4:
+      return 1;
+    case 3:
+      return 2;
+    case 2:
+      return 3;
+    case 1:
+      return 4;
+    case 0:
+      return 5;
+  }
+}
+
