@@ -204,6 +204,30 @@ button {
   border: 1px solid #fedbcf;
 }
 
+.answers__button.correct::before {
+  content: '';
+  position: absolute;
+  top: 14.5px;
+  left: 20px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #228b22;
+  border: 1px solid #228b22;
+}
+
+.answers__button.wrong::before {
+  content: '';
+  position: absolute;
+  top: 14.5px;
+  left: 20px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #e0115f;
+  border: 1px solid #e0115f;
+}
+
 .quiz-footer {
   width: 100%;
 }
@@ -558,7 +582,7 @@ body {
   border-bottom: 1px solid #f7dae6;
 }
 
-.bird-info__latin {
+.bird-info__species {
   width: 100%;
   font-size: 1.8rem;
   line-height: 2.2rem;
@@ -732,6 +756,12 @@ body {
   margin-bottom: 30px;
 }
 
+@media all and (max-width: 1000px) {
+  .quiz-header__upper {
+    margin-bottom: 20px;
+  }
+}
+
 @media all and (max-width: 490px) {
   .quiz-header__upper {
     flex-direction: column;
@@ -782,6 +812,12 @@ body {
   margin-bottom: 40px;
 }
 
+@media all and (max-width: 1000px) {
+  .questions {
+    margin-bottom: 30px;
+  }
+}
+
 @media all and (max-width: 768px) {
   .questions {
     flex-wrap: wrap;
@@ -814,6 +850,13 @@ body {
 @media all and (max-width: 768px) {
   .question {
     padding: 20px;
+  }
+}
+
+@media all and (max-width: 1000px) {
+  .question {
+    height: 200px;
+    margin-bottom: 20px;
   }
 }
 
@@ -900,6 +943,12 @@ body {
   margin-bottom: 40px;
 }
 
+@media all and (max-width: 1000px) {
+  .quiz-main {
+    margin-bottom: 30px;
+  }
+}
+
 .quiz-main__answers {
   width: 100%;
   display: flex;
@@ -933,7 +982,7 @@ body {
 @media all and (max-width: 768px) {
   .answers {
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 }
 

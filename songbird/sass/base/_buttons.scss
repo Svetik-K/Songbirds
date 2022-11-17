@@ -153,6 +153,34 @@
   }
 }
 
+.answers__button.correct {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 14.5px;
+    left: 20px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $color-green;
+    border: 1px solid $color-green;
+  }
+}
+
+.answers__button.wrong {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 14.5px;
+    left: 20px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $color-red;
+    border: 1px solid $color-red;
+  }
+}
+
 .quiz-footer {
   width: 100%;
 

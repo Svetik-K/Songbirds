@@ -40,6 +40,7 @@ categories.addEventListener('click', (e) => {
     }
     e.target.classList.add('button_active');
 
+    clearIndicators();
     categoryArray = returnCategory(birdsData, categoryName); // returns an array from birdsData
     const shuffledArr = categoryArray.sort((a, b) => 0.5 - Math.random()); // shuffles initial array
     loadQuestion(shuffledArr[0]); // loads first index in shuffled array
@@ -57,10 +58,13 @@ answers.addEventListener('click', (e) => {
     const birdName = e.target.textContent;
     if(birdName === correctAnswer) {
       showAnswer(question);
-      // TODO: add green indicator to button
+      loadBirdInfo(question);
+      e.target.classList.add('correct');
       audioMain.pause();
-      attemptCounter = 0;
+      
     } else {
+      e.target.classList.add('wrong');
+      attemptCounter += 1;
       // TODO: add red indicator to button
       // handle attempts
     }
@@ -91,9 +95,15 @@ function returnCategory(birdsData, categoryName) {
 function loadQuestion(bird) {
   const questionImage = document.querySelector('.question__image');
   questionImage.src = '../assets/img/question.png';
+  questionImage.alt = bird.name;
   const birdName = document.querySelector('.question__bird-name');
   birdName.textContent = '********';
   const birdSound = document.querySelector('.main-player__audio');
+  birdSound.addEventListener('loadedmetadata', () => {
+    const trackDuration = document.querySelector('.time_duration');
+    const duration = setTrackDuration(birdSound);
+    trackDuration.innerHTML = duration;
+  })
   birdSound.src = bird.audio;
 }
 
@@ -113,10 +123,65 @@ function showAnswer(bird) {
   birdName.textContent = bird.name;
 }
 
+// loads bird's info into the bird's card
+function loadBirdInfo(bird) {
+  const birdImage = document.querySelector('.bird-info__image');
+  birdImage.src = bird.image;
+  birdImage.alt = bird.name;
+  const birdName = document.querySelector('.bird-info__name');
+  birdName.textContent = bird.name;
+  const latinName = document.querySelector('.bird-info__species');
+  latinName.textContent = bird.species;
+  const birdSound = document.querySelector('.info-player__audio');
+  birdSound.addEventListener('loadedmetadata', () => {
+    const trackDuration = document.querySelector('.info-time_duration');
+    const duration = setTrackDuration(birdSound);
+    trackDuration.textContent = duration;
+  })
+  birdSound.src = bird.audio;
+  const birdDescription = document.querySelector('.bird-info__description');
+  birdDescription.textContent = bird.description;
+}
+
+// shows track's duration
+function setTrackDuration(audio) {
+  let audioDuration = audio.duration;
+  const secondsDuration = audioDuration.toString().split('.')[0];
+  let minutes = Math.floor(secondsDuration / 60);
+  let seconds = secondsDuration % 60;
+  if(seconds < 10) {
+    seconds = `0${seconds}`;
+  }
+  if(minutes.toString().length < 2) {
+    minutes = `0${minutes}`;
+  }
+  return `${minutes}:${seconds}`;
+}
+
+
 function loadNextQuestion() {
+  attemptCounter = 0;
+  clearIndicators();
+}
+
+function handleAttempts(attempts) {
 
 }
 
-function handleAttempts() {
+function addScore(attempts) {
 
+}
+
+function clearIndicators() {
+  const answersButtons = document.querySelectorAll('.answers__button');
+  for(let button of answersButtons) {
+    if(button.classList.contains('wrong')) {
+      button.classList.remove('wrong');
+    }
+  }
+  for(let button of answersButtons) {
+    if(button.classList.contains('correct')) {
+      button.classList.remove('correct');
+    }
+  }
 }
