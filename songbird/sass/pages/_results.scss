@@ -1,0 +1,22 @@
+
+
+.results-header {
+  width: 100%;
+
+  &__logo {
+    margin-bottom: 20px;
+  }
+
+  &__categories {
+    width: 100%;
+  }
+}
+
+.categories {
+  display: flex;
+  justify-content: space-between;
+
+  &__item {
+    width: 19%;
+  }
+}

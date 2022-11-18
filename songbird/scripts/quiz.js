@@ -191,7 +191,7 @@ categories.addEventListener('click', (e) => {
 
 // listens clicks on Next button
 nextButton.addEventListener('click', (e) => {
-  if(count === 5) {
+  if(count === 6) {
     nextButton.disabled = true;
     return;
   }
@@ -209,13 +209,21 @@ answers.addEventListener('click', (e) => {
     if(birdName === correctAnswer) {
       showAnswer(questionArray[count - 1]);
       loadBirdInfo(questionArray[count - 1]);
+
       infoSection.classList.remove('inactive');
       e.target.classList.add('correct');
+
       let resultScore = countScore();
       let curResult = parseInt(score.textContent);
       score.textContent = curResult + resultScore;
+
       audioMain.pause();
       enableNextButton();
+
+      if(count === 6) {
+        disableNextButton();
+        showResultsPage();
+      }
     } else {
       e.target.classList.add('wrong');
       for(let bird of questionArray) {
@@ -402,4 +410,12 @@ function disableNextButton() {
 function enableNextButton() {
   nextButton.disabled = false;
   nextButton.classList.remove('disabled');
+}
+
+function showResultsPage() {
+
+  setTimeout(() => {
+    window.location = './results.html';
+  }, 1000)
+  
 }
