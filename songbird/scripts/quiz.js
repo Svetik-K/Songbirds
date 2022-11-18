@@ -28,7 +28,10 @@ let count;
 let question;
 let correctAnswer;
 
-document.addEventListener('DOMContentLoaded', disableAnswers);
+document.addEventListener('DOMContentLoaded', () => {
+  disableAnswers();
+  disableNextButton();
+});
 
 // listens buttons for different categories
 categories.addEventListener('click', (e) => {
@@ -49,11 +52,10 @@ categories.addEventListener('click', (e) => {
     e.target.classList.add('button_active');
     clearIndicators();
     score.textContent = 0;
-    answers.classList.remove('inactive');
+    enableAnswers();
     questionArray = createShuffledArray(birdsData, categoryName);
     showFirstQuestion(questionArray);
     count = 1;
-    nextButton.disabled = true;
   }
 })
 
@@ -65,6 +67,7 @@ nextButton.addEventListener('click', (e) => {
     return;
   }
   loadNextQuestion(questionArray, count);
+  disableNextButton(); 
   count++;
   e.preventDefault();
 });
@@ -82,8 +85,7 @@ answers.addEventListener('click', (e) => {
       let curResult = parseInt(score.textContent);
       score.textContent = curResult + resultScore;
       audioMain.pause();
-      answersBlock.classList.add('inactive');
-      nextButton.disabled = false;
+      enableNextButton();
     } else {
       e.target.classList.add('wrong');
       for(let bird of questionArray) {
@@ -100,7 +102,8 @@ function showFirstQuestion(questionArray) {
   question = questionArray[0]; 
   correctAnswer = questionArray[0].name;
   loadQuestion(questionArray[0]);
-  loadAnswers(questionArray); 
+  loadAnswers(questionArray);
+  disableNextButton(); 
 }
 
 // returns shuffled array
@@ -252,4 +255,18 @@ function countScore() {
 
 function disableAnswers() {
   answers.classList.add('inactive');
+}
+
+function enableAnswers() {
+  answers.classList.remove('inactive');
+}
+
+function disableNextButton() {
+  nextButton.disabled = true;
+  nextButton.classList.add('disabled');
+}
+
+function enableNextButton() {
+  nextButton.disabled = false;
+  nextButton.classList.remove('disabled');
 }
