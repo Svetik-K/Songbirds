@@ -18,6 +18,10 @@
       @include font(1.4rem, 1.4rem, 500);
     }
 
+    @media all and(max-width: 768px) {
+      height: 35px;
+    }
+
     &:hover {
       background-color: $color-violet-dark;
     }
@@ -42,6 +46,10 @@
 
     &:hover {
       transform: scale(1.1);
+    }
+
+    @media all and(max-width: 1000px) {
+      margin-bottom: 5px;
     }
   }
 
@@ -135,6 +143,10 @@
     text-align: left;
     padding-left: 60px;
 
+    @media all and(max-width: 768px) {
+      padding-left: 40px;
+    }
+
     &:hover {
       background-color: darken($color-pink-add, 10%);
     }
@@ -149,6 +161,13 @@
       border-radius: 50%;
       background: $color-light;
       border: 1px solid $color-pink-main;
+
+      @media all and(max-width: 768px) {
+        width: 12px;
+        height: 12px;
+        top: 16.5px;
+        left: 15px;
+      }
     }
   }
 }
@@ -164,6 +183,13 @@
     border-radius: 50%;
     background: $color-green;
     border: 1px solid $color-green;
+
+    @media all and(max-width: 768px) {
+      width: 12px;
+      height: 12px;
+      top: 16.5px;
+      left: 15px;
+    }
   }
 }
 
@@ -178,6 +204,13 @@
     border-radius: 50%;
     background: $color-red;
     border: 1px solid $color-red;
+
+    @media all and(max-width: 768px) {
+      width: 12px;
+      height: 12px;
+      top: 16.5px;
+      left: 15px;
+    }
   }
 }
 
@@ -202,4 +235,8 @@
       background-color: $color-violet-dark;
     }
   }
+}
+
+.disabled {
+  opacity: 0.2;
 }

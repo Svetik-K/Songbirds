@@ -28,6 +28,8 @@ let count;
 let question;
 let correctAnswer;
 
+document.addEventListener('DOMContentLoaded', disableAnswers);
+
 // listens buttons for different categories
 categories.addEventListener('click', (e) => {
   const buttonBlock = e.target.parentElement.parentElement;
@@ -248,3 +250,6 @@ function countScore() {
   }
 }
 
+function disableAnswers() {
+  answers.classList.add('inactive');
+}
