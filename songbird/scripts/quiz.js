@@ -11,21 +11,35 @@ const progressInfo = document.querySelector('.info-player__progress');
 const buttonPlayInfo = document.querySelector('.info-player__button');
 const volumeMain = document.querySelector('.main-player__volume-slider');
 const volumeInfo = document.querySelector('.info-player__volume-slider');
+const curTimeMain = document.querySelector('.time_current');
+const curTimeInfo = document.querySelector('.info-time_current');
 
 audioMain.addEventListener('timeupdate', updateProgressMain);
 sliderMain.addEventListener('click', setProgressMain);
 audioInfo.addEventListener('timeupdate', updateProgressInfo);
 sliderInfo.addEventListener('click', setProgressInfo);
 
+let timeCounter;
+let minutes = '00';
+let seconds = '00';
+let timeCounterInfo;
+let minutesInfo = '00';
+let secondsInfo = '00';
+
+
+
 // listens clicks on play in question section
 buttonPlayMain.addEventListener('click', (e) => {
   if(e.target.classList.contains('button_play')) {
     audioMain.play();
+    clearInterval(timeCounter);
+    setTimeUpdateMain();
     e.target.classList.remove('button_play');
     e.target.classList.add('button_pause');
   } else {
     if(e.target.classList.contains('button_pause')) {
       audioMain.pause();
+      clearInterval(timeCounter);
       e.target.classList.remove('button_pause');
       e.target.classList.add('button_play');
     }
@@ -47,11 +61,14 @@ volumeMain.addEventListener('input', (e) => {
 buttonPlayInfo.addEventListener('click', (e) => {
   if(e.target.classList.contains('button_play')) {
     audioInfo.play();
+    clearInterval(timeCounterInfo);
+    setTimeUpdateInfo();
     e.target.classList.remove('button_play');
     e.target.classList.add('button_pause');
   } else {
     if(e.target.classList.contains('button_pause')) {
       audioInfo.pause();
+      clearInterval(timeCounterInfo);
       e.target.classList.remove('button_pause');
       e.target.classList.add('button_play');
     }
@@ -99,30 +116,43 @@ function setProgressInfo(e) {
   audioInfo.currentTime = (clickX / width) * duration;
 }
 
-function setTimeCounterMain() {
-  gameCounter = setInterval(() => { 
-      if(seconds == 59) {
-          seconds = '00';
-          minutes = parseInt(minutes) + 1;
-      }
+// timer for time progress in main player
+function setTimeUpdateMain() {
+  timeCounter = setInterval(() => { 
+    if(seconds == 59) {
+      seconds = '00';
+      minutes = parseInt(minutes) + 1;
+    }
 
-      seconds = parseInt(seconds) + 1;
-      if(seconds < 10) {
-          seconds = '0' + seconds;
-      }
-      if(minutes.toString().length === 1) {
-          minutes = '0' + minutes;
-      }
-      if( minutes == 59 && seconds == 59) {
-          setCounterToNull();
-          addLose();
-      }
-      const time = document.querySelector('.time_duration');
-      time.textContent = `Time: ${minutes}:${seconds}`;     
-
+    seconds = parseInt(seconds) + 1;
+    if(seconds < 10) {
+      seconds = '0' + seconds;
+    }
+    if(minutes.toString().length === 1) {
+      minutes = '0' + minutes;
+    }
+    curTimeMain.textContent = `${minutes}:${seconds}`;    
   }, 1000);
 }
 
+// timer for time progress in info player
+function setTimeUpdateInfo() {
+  timeCounterInfo = setInterval(() => { 
+    if(secondsInfo == 59) {
+      secondsInfo = '00';
+      minutesInfo = parseInt(minutesInfo) + 1;
+    }
+
+    secondsInfo = parseInt(secondsInfo) + 1;
+    if(secondsInfo < 10) {
+      secondsInfo = '0' + secondsInfo;
+    }
+    if(minutesInfo.toString().length === 1) {
+      minutesInfo = '0' + minutesInfo;
+    }
+    curTimeInfo.textContent = `${minutesInfo}:${secondsInfo}`;    
+  }, 1000);
+}
 
 // resets question player
 function resetPlayerMain() {
@@ -130,6 +160,9 @@ function resetPlayerMain() {
   audioMain.volume = 0.2;
   buttonPlayMain.classList.remove('button_pause');
   buttonPlayMain.classList.add('button_play');
+  minutes = '00';
+  seconds = '00';
+  curTimeMain.textContent = `${minutes}:${seconds}`;
 }
 
 //resets info player
@@ -138,6 +171,9 @@ function resetPlayerInfo() {
   audioInfo.volume = 0.2;
   buttonPlayInfo.classList.remove('button_pause');
   buttonPlayInfo.classList.add('button_play');
+  minutesInfo = '00';
+  secondsInfo = '00';
+  curTimeInfo.textContent = `${minutesInfo}:${secondsInfo}`;
 }
 
 // Quiz logic
@@ -365,6 +401,7 @@ function loadNextQuestion(questionArray, count) {
   clearIndicators();
   loadQuestion(questionArray[count]);
   loadAnswers(questionArray);
+  resetBirdInfo();
   correctAnswer = questionArray[count].name;
   nextButton.disabled = true;
 }
@@ -392,6 +429,23 @@ function countScore() {
     case 0:
       return 5;
   }
+}
+
+function resetBirdInfo() {
+  const birdImage = document.querySelector('.bird-info__image');
+  birdImage.src = '../assets/img/question.png';
+  const birdName = document.querySelector('.bird-info__name');
+  birdName.textContent = '********';
+  const birdSpecies = document.querySelector('.bird-info__species');
+  birdSpecies.textContent = '****** ******';
+  const description = document.querySelector('.bird-info__description');
+  description.textContent = '********';
+  resetPlayerInfo();
+  const birdSound = document.querySelector('.info-player__audio');
+  birdSound.src = '#';
+  const duration = document.querySelector('.info-time_duration');
+  duration.textContent = '00:00';
+  infoSection.classList.add('inactive');
 }
 
 function disableAnswers() {
