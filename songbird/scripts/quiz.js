@@ -27,7 +27,6 @@ let minutesInfo = '00';
 let secondsInfo = '00';
 
 
-
 // listens clicks on play in question section
 buttonPlayMain.addEventListener('click', (e) => {
   if(e.target.classList.contains('button_play')) {
@@ -257,6 +256,8 @@ answers.addEventListener('click', (e) => {
       enableNextButton();
 
       if(count === 6) {
+        let finalScore = score.textContent;
+        localStorage.score = JSON.stringify(finalScore);
         disableNextButton();
         showResultsPage();
       }
@@ -473,3 +474,5 @@ function showResultsPage() {
   }, 1000)
   
 }
+
+

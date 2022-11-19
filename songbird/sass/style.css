@@ -302,6 +302,31 @@ button {
   opacity: 0.2;
 }
 
+.results-main__button {
+  width: 200px;
+  height: 50px;
+  border-radius: 15px;
+  border: none;
+  font-family: "Lato", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+  font-weight: 500;
+  font-style: normal;
+  color: #fffcf7;
+  background-color: #aa83c1;
+  cursor: pointer;
+  transition: .5s;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.results-main__button:hover {
+  background-color: #9a3f9a;
+}
+
 html {
   width: 100%;
   height: 100%;
@@ -362,7 +387,19 @@ body {
 }
 
 .page-container_results {
-  padding: 30px 100px 40px;
+  padding: 30px 200px 40px;
+}
+
+@media all and (max-width: 1280px) {
+  .page-container_results {
+    padding: 30px 100px 40px;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .page-container_results {
+    padding: 30px 20px 40px;
+  }
 }
 
 .main-player {
@@ -1089,9 +1126,82 @@ body {
 
 .results-header {
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .results-header__logo {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.results-header__logo::before {
+  content: '';
+  background-image: url(../assets/img/yellow_parrot.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: -45px;
+  left: 165px;
+}
+
+.results-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 400px;
+  background-color: rgba(200, 175, 215, 0.3);
+  border-radius: 15px;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  padding: 20px 30px;
+  box-sizing: border-box;
+}
+
+.results-main__title {
+  font-size: 4.8rem;
+  line-height: 4.8rem;
+  font-weight: 700;
+  font-style: normal;
+  color: #9a3f9a;
+  margin-bottom: 50px;
+}
+
+@media all and (max-width: 490px) {
+  .results-main__title {
+    font-size: 3.8rem;
+    line-height: 3.8rem;
+    font-weight: 700;
+    font-style: normal;
+  }
+}
+
+.results-main__text {
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+  font-weight: 700;
+  font-style: normal;
+  color: #9a3f9a;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+@media all and (max-width: 490px) {
+  .results-main__text {
+    font-size: 2rem;
+    line-height: 2.8rem;
+    font-weight: 700;
+    font-style: normal;
+  }
+}
+
+.results-main__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 /*# sourceMappingURL=style.css.map */
