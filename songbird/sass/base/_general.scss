@@ -20,6 +20,20 @@ body {
 	color: $color-light;
 	background: transparent;
 	text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.5);
+  position: relative;
+
+  &::before {
+    content: '';
+    background-image: url(../assets/img/yellow_parrot.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -45px;
+    left: 165px;
+  }
 }
 
 .page-container {
@@ -55,6 +69,22 @@ body {
 
     @media all and(max-width: 1280px) {
       padding: 30px 100px 40px;
+    }
+
+    @media all and(max-width: 768px) {
+      padding: 30px 20px 40px;
+    }
+  }
+
+  &_gallery {
+    padding: 30px 200px 40px;
+
+    @media all and(max-width: 1500px) {
+      padding: 30px 100px 40px;
+    }
+
+    @media all and(max-width: 1280px) {
+      padding: 30px 50px 40px;
     }
 
     @media all and(max-width: 768px) {

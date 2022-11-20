@@ -32,23 +32,6 @@
   &__questions {
     width: 100%;
   }
-
-  &__logo {
-    position: relative;
-
-    &::before {
-      content: '';
-      background-image: url(../assets/img/yellow_parrot.png);
-      background-repeat: no-repeat;
-      background-size: contain;
-      display: block;
-      width: 100px;
-      height: 100px;
-      position: absolute;
-      top: -45px;
-      left: 165px;
-    }
-  }
 }
 
 .player-score {
@@ -141,6 +124,7 @@
     width: 75%;
     height: 75%;
     border-radius: 50%;
+    object-fit: cover;
   }
 
   &__sound {

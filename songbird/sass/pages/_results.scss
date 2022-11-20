@@ -4,21 +4,7 @@
   justify-content: center;
 
   &__logo {
-    margin-bottom: 40px;
-    position: relative;
-
-    &::before {
-      content: '';
-      background-image: url(../assets/img/yellow_parrot.png);
-      background-repeat: no-repeat;
-      background-size: contain;
-      display: block;
-      width: 100px;
-      height: 100px;
-      position: absolute;
-      top: -45px;
-      left: 165px;
-    }
+    margin-bottom: 40px; 
   }
 }
 

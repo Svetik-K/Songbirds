@@ -1,12 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/sass/style.css">
+  <link rel="icon" href="../assets/svg/small_bird.ico">
+  <title>Gallery</title>
 </head>
 <body>
-    
+  <div class="page-container page-container_gallery">
+    <header class="gallery-header">
+      <div class="gallery-header__wrapper">
+        <div class="gallery-header__logo">
+          <h1 class="logo-title logo-title_gallery">Songbird</h1>
+        </div>
+        <div class="gallery-header__buttons">
+          <a href="./index.html" class="gallery-header__button">На главную</a>
+          <a href="./quiz.html" class="gallery-header__button">Викторина</a>
+        </div>
+      </div>
+      <div class="gallery-header__categories">
+        <ul class="categories">
+          <li class="categories__item"><button class="categories__button">Все</button></li>
+          <li class="categories__item"><button class="categories__button">Воробьиные</button></li>
+          <li class="categories__item"><button class="categories__button">Лесные птицы</button></li>
+          <li class="categories__item"><button class="categories__button">Певчие птицы</button></li>
+          <li class="categories__item"><button class="categories__button">Хищные птицы</button></li>
+          <li class="categories__item"><button class="categories__button">Морские птицы</button></li>
+        </ul>
+      </div>
+    </header>
+    <main class="gallery-main">
+      <div class="gallery-main__items"></div>
+    </main>
+  </div>
+  <div class="modal"></div>
+  <script src="../scripts/gallery.js" type="module"></script>
 </body>
 </html>
+
+<!-- <div class="bird-card__player bird-card-player">
+  <audio src="#" class="bird-card-player__audio"></audio>
+  <div class="bird-card-player__upper-wrapper">
+    <button class="bird-card-player__button button_play"></button>
+    <div class="bird-card-player__slider-wrapper">
+      <div class="bird-card-player__slider">
+        <div class="bird-card-player__progress"></div>
+      </div>
+      <div class="bird-card-player__time-wrapper">
+        <span class="bird-card-time bird-card-time_current">00:00</span>
+        <span class="bird-card-time bird-card-time_duration">00:00</span>
+      </div>
+    </div>
+  </div>
+  <div class="bird-card-player__volume-wrapper">
+    <button class="bird-card-player__button-sound button_volume-up"></button>
+    <input type="range" class="bird-card-player__volume-slider" max="100" value="20">  
+  </div>
+</div> -->
