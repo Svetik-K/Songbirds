@@ -1158,7 +1158,7 @@ body {
   }
 }
 
-@media all and (max-width: 490px) {
+@media all and (max-width: 768px) {
   .quiz-header__upper {
     flex-direction: column;
     align-items: center;
@@ -1173,6 +1173,34 @@ body {
   font-style: normal;
   color: #fffcf7;
   text-align: left;
+}
+
+.quiz-header__link {
+  font-size: 2.8rem;
+  line-height: 2.8rem;
+  font-weight: 700;
+  font-style: normal;
+  color: #fffcf7;
+  text-decoration: none;
+  transition: 0.5s;
+  padding-left: 20px;
+}
+
+.quiz-header__link:first-child {
+  padding-left: 0;
+}
+
+@media all and (max-width: 1000px) {
+  .quiz-header__link {
+    font-size: 2.2rem;
+    line-height: 2.2rem;
+    font-weight: 700;
+    font-style: normal;
+  }
+}
+
+.quiz-header__link:hover {
+  color: #9a3f9a;
 }
 
 .quiz-header__questions {

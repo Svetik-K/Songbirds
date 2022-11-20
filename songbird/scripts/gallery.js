@@ -107,6 +107,7 @@ gallery.addEventListener('click', (e) => {
 window.addEventListener('click', (e) => {
   if(e.target.classList.contains('modal')) {
     modal.style.display = 'none';
+    resetPlayer();
   }
 })
 
@@ -208,4 +209,14 @@ function loadBirdInfo(bird) {
   birdSound.src = bird.audio;
   const birdDescription = document.querySelector('.bird-card__description');
   birdDescription.textContent = bird.description;
+}
+
+function resetPlayer() {
+  progress.style.width = `0%`;
+  audio.volume = 0.2;
+  buttonPlay.classList.remove('button_pause');
+  buttonPlay.classList.add('button_play');
+  minutes = '00';
+  seconds = '00';
+  curTime.textContent = `${minutes}:${seconds}`;
 }
