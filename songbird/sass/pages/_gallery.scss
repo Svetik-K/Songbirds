@@ -9,6 +9,12 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+
+    @media all and(max-width: 768px) {
+      flex-direction: column;
+      justify-content: center;
+      row-gap: 20px;
+    }
   }
 
   &__categories {
@@ -23,6 +29,11 @@
     text-decoration: none;
     transition: 0.5s;
     padding-left: 50px;
+
+    @media all and(max-width: 768px) {
+      padding-left: 20px;
+      @include font(2.2rem, 2.2rem, 700);
+    }
     
     &:hover {
       color: $color-violet-dark;
