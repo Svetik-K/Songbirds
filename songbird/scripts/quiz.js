@@ -140,6 +140,8 @@ const nextButton = document.querySelector('.quiz-footer__button');
 const score = document.querySelector('.player-score');
 const questionSection = document.querySelector('.question');
 const infoSection = document.querySelector('.bird-info');
+const correct = document.querySelector('.correct-answer');
+const incorrect = document.querySelector('.incorrect-answer');
 
 let questionArray;
 let count = 0;
@@ -180,6 +182,7 @@ answers.addEventListener('click', (e) => {
       loadBirdInfo(questionArray[randomNumber]);
 
       e.target.classList.add('correct');
+      correct.play();
       isFinished = true;
 
       let resultScore = countScore();
@@ -201,6 +204,7 @@ answers.addEventListener('click', (e) => {
         for(let bird of questionArray) {
           if(bird.name === e.target.textContent) {
             loadBirdInfo(bird);
+            incorrect.play();
             infoSection.classList.remove('inactive');
           }
         }
@@ -360,6 +364,7 @@ function countScore() {
   }
 }
 
+// resets bird's info
 function resetBirdInfo() {
   const birdImage = document.querySelector('.bird-info__image');
   birdImage.src = '../assets/img/question.png';
@@ -394,5 +399,3 @@ function showResultsPage() {
   }, 1000)
   
 }
-
-
