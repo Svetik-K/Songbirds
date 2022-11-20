@@ -186,43 +186,20 @@ const questionSection = document.querySelector('.question');
 const infoSection = document.querySelector('.bird-info');
 
 let questionArray;
-let count;
+let count = 0;
 let question;
 let correctAnswer;
 
-document.addEventListener('DOMContentLoaded', () => {
-  disableAnswers();
-  disableNextButton();
-  questionSection.classList.add('inactive');
-  infoSection.classList.add('inactive');
-});
-
-// listens buttons for different categories
-categories.addEventListener('click', (e) => {
-  const buttonBlock = e.target.parentElement.parentElement;
-  if(buttonBlock.classList.contains('questions')) {
-    const categoryName = e.target.textContent;
-
-    for(let i = 0; i < categoryButtons.length; i++) {
-      if(e.target.classList.contains('button_active')) {
-        return;
-      } 
-      for(let button of categoryButtons) {
-        if(button.classList.contains('button_active')) {
-          button.classList.remove('button_active');
-        }
-      }
-    }
-    e.target.classList.add('button_active');
-    questionSection.classList.remove('inactive');
-    clearIndicators();
-    score.textContent = 0;
-    enableAnswers();
-    questionArray = createShuffledArray(birdsData, categoryName);
-    showFirstQuestion(questionArray);
-    count = 1;
-  }
-})
+questionArray = birdsData[count];
+let randomNumber = Math.floor(Math.random() * 5);
+correctAnswer = questionArray[randomNumber].name;
+loadQuestion(questionArray[randomNumber]);
+disableNextButton();
+loadAnswers(questionArray);
+resetBirdInfo();
+categoryButtons[count].classList.add('button_active');
+infoSection.classList.add('inactive');
+count++;
 
 // listens clicks on Next button
 nextButton.addEventListener('click', (e) => {
@@ -230,7 +207,7 @@ nextButton.addEventListener('click', (e) => {
     nextButton.disabled = true;
     return;
   }
-  loadNextQuestion(questionArray, count);
+  loadNextQuestion(count);
   disableNextButton(); 
   count++;
   e.preventDefault();
@@ -242,10 +219,9 @@ answers.addEventListener('click', (e) => {
   if(answersBlock.classList.contains('answers')) {
     const birdName = e.target.textContent;
     if(birdName === correctAnswer) {
-      showAnswer(questionArray[count - 1]);
-      loadBirdInfo(questionArray[count - 1]);
+      showAnswer(questionArray[randomNumber]);
+      loadBirdInfo(questionArray[randomNumber]);
 
-      infoSection.classList.remove('inactive');
       e.target.classList.add('correct');
 
       let resultScore = countScore();
@@ -272,41 +248,6 @@ answers.addEventListener('click', (e) => {
     }
   }
 })
-
-// shows the first question after choosing a category
-function showFirstQuestion(questionArray) {
-  question = questionArray[0]; 
-  correctAnswer = questionArray[0].name;
-  loadQuestion(questionArray[0]);
-  loadAnswers(questionArray);
-  disableNextButton(); 
-}
-
-// returns shuffled array
-function createShuffledArray(birdsData, categoryName) {
-  const categoryArray = returnCategory(birdsData, categoryName); // returns an array from birdsData
-  let copyArr = [...categoryArray];
-  const shuffledArr = copyArr.sort((a, b) => 0.5 - Math.random()); // shuffles initial array
-  return shuffledArr;
-}
-
-// returns category according to the button clicked
-function returnCategory(birdsData, categoryName) {
-  switch(categoryName) {
-    case 'Разминка':
-      return birdsData[0];
-    case 'Воробьиные':
-      return birdsData[1];
-    case 'Лесные птицы':
-      return birdsData[2];
-    case 'Певчие птицы':
-      return birdsData[3];
-    case 'Хищные птицы':
-      return birdsData[4];
-    case 'Морские птицы':
-      return birdsData[5];
-  }
-}
 
 // loads question to the question block
 function loadQuestion(bird) {
@@ -394,16 +335,20 @@ function clearIndicators() {
 }
 
 // loads next question from the shuffled array
-function loadNextQuestion(questionArray, count) {
+function loadNextQuestion(count) {
+  questionArray = birdsData[count];
+  let randomNumber = Math.floor(Math.random() * 5);
   const answersBlock = document.querySelector('.answers');
   if(answersBlock.classList.contains('inactive')) {
     answersBlock.classList.remove('inactive');
   }
   clearIndicators();
-  loadQuestion(questionArray[count]);
+  loadQuestion(questionArray[randomNumber]);
   loadAnswers(questionArray);
   resetBirdInfo();
-  correctAnswer = questionArray[count].name;
+  correctAnswer = questionArray[randomNumber].name;
+  categoryButtons[count - 1].classList.remove('button_active');
+  categoryButtons[count].classList.add('button_active');
   nextButton.disabled = true;
 }
 
@@ -440,21 +385,13 @@ function resetBirdInfo() {
   const birdSpecies = document.querySelector('.bird-info__species');
   birdSpecies.textContent = '****** ******';
   const description = document.querySelector('.bird-info__description');
-  description.textContent = '********';
+  description.textContent = 'Прослушайте звук, издаваемый птицей, и выберите название птицы, чей голос прозвучал.';
   resetPlayerInfo();
   const birdSound = document.querySelector('.info-player__audio');
   birdSound.src = '#';
   const duration = document.querySelector('.info-time_duration');
   duration.textContent = '00:00';
   infoSection.classList.add('inactive');
-}
-
-function disableAnswers() {
-  answers.classList.add('inactive');
-}
-
-function enableAnswers() {
-  answers.classList.remove('inactive');
 }
 
 function disableNextButton() {
