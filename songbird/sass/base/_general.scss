@@ -78,6 +78,7 @@ body {
 
   &_gallery {
     padding: 30px 200px 40px;
+    position: relative;
 
     @media all and(max-width: 1500px) {
       padding: 30px 100px 40px;

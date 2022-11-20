@@ -34,8 +34,42 @@
     <main class="gallery-main">
       <div class="gallery-main__items"></div>
     </main>
+    <div class="modal">
+      <div class="modal__bird-card bird-card">
+        <div class="bird-card__basic">
+          <div class="bird-card__picture-wrapper">
+            <div class="bird-card__picture">
+              <img src="#" class="bird-card__image" alt="">
+            </div>
+          </div>
+          <div class="bird-card__other">
+            <div class="bird-card__name"></div>
+            <div class="bird-card__species"></div>
+            <div class="bird-card__player bird-card-player">
+              <audio src="#" class="bird-card-player__audio"></audio>
+              <div class="bird-card-player__upper-wrapper">
+                <button class="bird-card-player__button button_play"></button>
+                <div class="bird-card-player__slider-wrapper">
+                  <div class="bird-card-player__slider">
+                    <div class="bird-card-player__progress"></div>
+                  </div>
+                  <div class="bird-card-player__time-wrapper">
+                    <span class="bird-card-time bird-card-time_current">00:00</span>
+                    <span class="bird-card-time bird-card-time_duration">00:00</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bird-card-player__volume-wrapper">
+                <button class="bird-card-player__button-sound button_volume-up"></button>
+                <input type="range" class="bird-card-player__volume-slider" min="0" max="100" value="20">  
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bird-card__description"></div>
+      </div>
+    </div>
   </div>
-  <div class="modal"></div>
   <script src="../scripts/gallery.js" type="module"></script>
 </body>
 </html>

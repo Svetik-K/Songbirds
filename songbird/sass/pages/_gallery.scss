@@ -172,7 +172,7 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.4);
@@ -187,10 +187,18 @@
   border-radius: 15px;
   padding: 20px 30px;
 
+  @media all and(max-width: 520px) {
+    padding: 20px 15px;
+  } 
+
   &__basic {
     width: 100%;
     display: flex;
     margin-bottom: 30px;
+
+    @media all and(max-width: 768px) {
+      margin-bottom: 10px;
+    }
   }
 
   &__picture-wrapper {
@@ -198,6 +206,10 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+
+    @media all and(max-width: 768px) {
+      width: 35%;
+    }
   }
 
   &__picture {
@@ -224,6 +236,10 @@
   &__other {
     width: 75%;
     padding-left: 30px;
+
+    @media all and(max-width: 768px) {
+      width: 65%;
+    }
   }
 
   &__name {

@@ -19,10 +19,8 @@ sliderMain.addEventListener('click', setProgressMain);
 audioInfo.addEventListener('timeupdate', updateProgressInfo);
 sliderInfo.addEventListener('click', setProgressInfo);
 
-let timeCounter;
 let minutes = '00';
 let seconds = '00';
-let timeCounterInfo;
 let minutesInfo = '00';
 let secondsInfo = '00';
 
@@ -31,14 +29,11 @@ let secondsInfo = '00';
 buttonPlayMain.addEventListener('click', (e) => {
   if(e.target.classList.contains('button_play')) {
     audioMain.play();
-    clearInterval(timeCounter);
-    setTimeUpdateMain();
     e.target.classList.remove('button_play');
     e.target.classList.add('button_pause');
   } else {
     if(e.target.classList.contains('button_pause')) {
       audioMain.pause();
-      clearInterval(timeCounter);
       e.target.classList.remove('button_pause');
       e.target.classList.add('button_play');
     }
@@ -60,14 +55,11 @@ volumeMain.addEventListener('input', (e) => {
 buttonPlayInfo.addEventListener('click', (e) => {
   if(e.target.classList.contains('button_play')) {
     audioInfo.play();
-    clearInterval(timeCounterInfo);
-    setTimeUpdateInfo();
     e.target.classList.remove('button_play');
     e.target.classList.add('button_pause');
   } else {
     if(e.target.classList.contains('button_pause')) {
       audioInfo.pause();
-      clearInterval(timeCounterInfo);
       e.target.classList.remove('button_pause');
       e.target.classList.add('button_play');
     }
@@ -90,6 +82,7 @@ function updateProgressMain(e) {
   const {duration, currentTime} = e.srcElement;
   const progressPercent = (currentTime / duration) * 100;
   progressMain.style.width = `${progressPercent}%`;
+  curTimeMain.textContent = setTrackCurrent(e.srcElement);
 }
 
 // shows progress when sound is palying in question player
@@ -105,6 +98,7 @@ function updateProgressInfo(e) {
   const {duration, currentTime} = e.srcElement;
   const progressPercent = (currentTime / duration) * 100;
   progressInfo.style.width = `${progressPercent}%`;
+  curTimeInfo.textContent = setTrackCurrent(e.srcElement);
 }
 
 // shows progress when sound is palying in info player
@@ -113,44 +107,6 @@ function setProgressInfo(e) {
   const clickX = e.offsetX;
   const duration = audioInfo.duration;
   audioInfo.currentTime = (clickX / width) * duration;
-}
-
-// timer for time progress in main player
-function setTimeUpdateMain() {
-  timeCounter = setInterval(() => { 
-    if(seconds == 59) {
-      seconds = '00';
-      minutes = parseInt(minutes) + 1;
-    }
-
-    seconds = parseInt(seconds) + 1;
-    if(seconds < 10) {
-      seconds = '0' + seconds;
-    }
-    if(minutes.toString().length === 1) {
-      minutes = '0' + minutes;
-    }
-    curTimeMain.textContent = `${minutes}:${seconds}`;    
-  }, 1000);
-}
-
-// timer for time progress in info player
-function setTimeUpdateInfo() {
-  timeCounterInfo = setInterval(() => { 
-    if(secondsInfo == 59) {
-      secondsInfo = '00';
-      minutesInfo = parseInt(minutesInfo) + 1;
-    }
-
-    secondsInfo = parseInt(secondsInfo) + 1;
-    if(secondsInfo < 10) {
-      secondsInfo = '0' + secondsInfo;
-    }
-    if(minutesInfo.toString().length === 1) {
-      minutesInfo = '0' + minutesInfo;
-    }
-    curTimeInfo.textContent = `${minutesInfo}:${secondsInfo}`;    
-  }, 1000);
 }
 
 // resets question player
@@ -189,6 +145,7 @@ let questionArray;
 let count = 0;
 let question;
 let correctAnswer;
+let isFinished = false;
 
 questionArray = birdsData[count];
 let randomNumber = Math.floor(Math.random() * 5);
@@ -223,6 +180,7 @@ answers.addEventListener('click', (e) => {
       loadBirdInfo(questionArray[randomNumber]);
 
       e.target.classList.add('correct');
+      isFinished = true;
 
       let resultScore = countScore();
       let curResult = parseInt(score.textContent);
@@ -238,19 +196,30 @@ answers.addEventListener('click', (e) => {
         showResultsPage();
       }
     } else {
-      e.target.classList.add('wrong');
-      for(let bird of questionArray) {
-        if(bird.name === e.target.textContent) {
-          loadBirdInfo(bird);
-          infoSection.classList.remove('inactive');
+      if(isFinished === false) {
+        e.target.classList.add('wrong');
+        for(let bird of questionArray) {
+          if(bird.name === e.target.textContent) {
+            loadBirdInfo(bird);
+            infoSection.classList.remove('inactive');
+          }
+        }
+      } else {
+        for(let bird of questionArray) {
+          if(bird.name === e.target.textContent) {
+            loadBirdInfo(bird);
+            infoSection.classList.remove('inactive');
+          }
         }
       }
+      
     }
   }
 })
 
 // loads question to the question block
 function loadQuestion(bird) {
+  isFinished = false;
   resetPlayerMain();
   const birdSound = document.querySelector('.main-player__audio');
   const questionImage = document.querySelector('.question__image');
@@ -307,6 +276,20 @@ function loadBirdInfo(bird) {
 // shows track's duration
 function setTrackDuration(audio) {
   let audioDuration = audio.duration;
+  const secondsDuration = audioDuration.toString().split('.')[0];
+  let minutes = Math.floor(secondsDuration / 60);
+  let seconds = secondsDuration % 60;
+  if(seconds < 10) {
+    seconds = `0${seconds}`;
+  }
+  if(minutes.toString().length < 2) {
+    minutes = `0${minutes}`;
+  }
+  return `${minutes}:${seconds}`;
+}
+
+function setTrackCurrent(audio) {
+  let audioDuration = audio.currentTime;
   const secondsDuration = audioDuration.toString().split('.')[0];
   let minutes = Math.floor(secondsDuration / 60);
   let seconds = secondsDuration % 60;
