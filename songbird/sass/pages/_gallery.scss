@@ -18,10 +18,10 @@
   }
 
   &__button {
-    @include font(2.8rem, 2.8rem, 500);
+    @include font(2.8rem, 2.8rem, 700);
     color: $color-light;
     text-decoration: none;
-    transition: .5s;
+    transition: 0.5s;
     padding-left: 50px;
     
     &:hover {

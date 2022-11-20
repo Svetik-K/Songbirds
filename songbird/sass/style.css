@@ -873,13 +873,19 @@ body {
 }
 
 .start-nav__item {
-  padding-left: 40px;
+  padding-left: 50px;
+}
+
+@media all and (max-width: 1000px) {
+  .start-nav__item {
+    padding-left: 30px;
+  }
 }
 
 .start-nav__link {
   font-size: 2.8rem;
   line-height: 2.8rem;
-  font-weight: 500;
+  font-weight: 700;
   font-style: normal;
   color: #fffcf7;
   text-decoration: none;
@@ -887,7 +893,7 @@ body {
 }
 
 .start-nav__link:hover {
-  color: #c8afd7;
+  color: #9a3f9a;
 }
 
 .start-main {
@@ -939,8 +945,8 @@ body {
   border-radius: 50%;
   background-color: #f7dae6;
   color: #2f1523;
-  font-size: 4.8rem;
-  line-height: 4.8rem;
+  font-size: 3.8rem;
+  line-height: 3.8rem;
   font-weight: 700;
   font-style: normal;
   display: flex;
@@ -1374,11 +1380,11 @@ body {
 .gallery-header__button {
   font-size: 2.8rem;
   line-height: 2.8rem;
-  font-weight: 500;
+  font-weight: 700;
   font-style: normal;
   color: #fffcf7;
   text-decoration: none;
-  transition: .5s;
+  transition: 0.5s;
   padding-left: 50px;
 }
 

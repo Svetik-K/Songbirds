@@ -9,18 +9,23 @@
   display: flex;
 
   &__item {
-    padding-left: 40px;
+    padding-left: 50px;
+
+    @media all and(max-width: 1000px) {
+      padding-left: 30px;
+    }
   }
 
   &__link {
-    @include font(2.8rem, 2.8rem, 500);
+    @include font(2.8rem, 2.8rem, 700);
     color: $color-light;
     text-decoration: none;
     transition: .5s;
     
     &:hover {
-      color: $color-violet-pale;
+      color: $color-violet-dark;
     }
+
   }
 }
 
@@ -73,7 +78,7 @@
     border-radius: 50%;
     background-color: $color-pink-add;
     color: $color-title;
-    @include font(4.8rem, 4.8rem, 700);
+    @include font(3.8rem, 3.8rem, 700);
     display: flex;
     text-align: center;
     align-items: center;
