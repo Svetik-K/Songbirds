@@ -861,15 +861,90 @@ body {
   overflow: auto;
 }
 
+.start-header__burger {
+  display: none;
+  position: relative;
+  width: 30px;
+  cursor: pointer;
+  z-index: 25;
+  transition: 0.5s;
+}
+
+@media all and (max-width: 768px) {
+  .start-header__burger {
+    display: block;
+  }
+}
+
+.line {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: #fffcf7;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  transition: 0.5s;
+}
+
+.start-header__burger.opened .line:first-child {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.start-header__burger.opened .line:nth-child(2) {
+  display: none;
+}
+
+.start-header__burger.opened .line:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.burger-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  transition: 0.5s;
+}
+
+.shown {
+  display: block;
+}
+
 .start-header {
   width: 100%;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+@media all and (max-width: 768px) {
+  .start-header__navigation {
+    position: absolute;
+    top: -230px;
+    right: -30px;
+    width: 300px;
+    height: 200px;
+    background-color: #b18dc6;
+    padding: 30px;
+    transition: 0.5s;
+    z-index: 20;
+    border-radius: 15px;
+  }
+}
+
 .start-nav {
   display: flex;
+}
+
+@media all and (max-width: 768px) {
+  .start-nav {
+    flex-direction: column;
+  }
 }
 
 .start-nav__item {
@@ -879,6 +954,13 @@ body {
 @media all and (max-width: 1000px) {
   .start-nav__item {
     padding-left: 30px;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .start-nav__item {
+    padding-left: 0;
+    margin-bottom: 20px;
   }
 }
 
@@ -896,8 +978,18 @@ body {
   color: #9a3f9a;
 }
 
+.open {
+  top: 0;
+}
+
 .start-main {
   padding: 15% 0;
+}
+
+@media all and (max-width: 768px) {
+  .start-main {
+    padding: 20% 0;
+  }
 }
 
 .quiz-start {
@@ -913,6 +1005,13 @@ body {
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
+@media all and (max-width: 520px) {
+  .quiz-start {
+    width: 200px;
+    height: 200px;
+  }
+}
+
 .quiz-start::before {
   content: '';
   background-image: url(../assets/img/green_bird.png);
@@ -924,6 +1023,15 @@ body {
   position: absolute;
   top: -50px;
   left: -70px;
+}
+
+@media all and (max-width: 520px) {
+  .quiz-start::before {
+    width: 100px;
+    height: 100px;
+    top: -20px;
+    left: -30px;
+  }
 }
 
 .quiz-start::after {
@@ -939,9 +1047,18 @@ body {
   left: 200px;
 }
 
+@media all and (max-width: 520px) {
+  .quiz-start::after {
+    width: 100px;
+    height: 100px;
+    top: 80px;
+    left: 150px;
+  }
+}
+
 .quiz-start__link {
-  width: 200px;
-  height: 200px;
+  width: 75%;
+  height: 75%;
   border-radius: 50%;
   background-color: #f7dae6;
   color: #2f1523;
@@ -954,6 +1071,15 @@ body {
   align-items: center;
   text-decoration: none;
   transition: 0.5s;
+}
+
+@media all and (max-width: 520px) {
+  .quiz-start__link {
+    font-size: 2.8rem;
+    line-height: 2.8rem;
+    font-weight: 700;
+    font-style: normal;
+  }
 }
 
 .quiz-start__link:hover {
