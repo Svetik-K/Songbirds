@@ -28,7 +28,7 @@ const translation = {
 
 let birdsData;
 
-const language = localStorage.lang;
+const language = localStorage.lang || 'ru';
 getTranslate(language);
 if(language === 'en') {
   birdsData = birdsDataEn;

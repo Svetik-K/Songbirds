@@ -15,7 +15,7 @@ let message;
 let winMessage;
 
 let score = JSON.parse(localStorage.score);
-const language = localStorage.lang;
+const language = localStorage.lang || 'ru';
 getTranslate(language);
 if(language === 'en') {
   message = `You've got the maximum possible number of points, 30 out of 30! Excellent result!`;

@@ -29,14 +29,14 @@ const translation = {
 let birdsData;
 let message;
 
-const language = localStorage.lang;
+const language = localStorage.lang || 'ru';
 getTranslate(language);
 if(language === 'en') {
-  birdsData = birdsDataEn;
+  birdsData =[...birdsDataEn];
   message = `Listen to the bird's song and choose the name of the bird whose voice was just heard.`
 }
 else if(language === 'ru') {
-  birdsData = birds;
+  birdsData = [...birds];
   message = 'Прослушайте звук, издаваемый птицей, и выберите название птицы, чей голос прозвучал.'
 }
 
@@ -218,8 +218,13 @@ answers.addEventListener('click', (e) => {
   if(answersBlock.classList.contains('answers')) {
     const birdName = e.target.textContent;
     if(birdName === correctAnswer && isFinished === false) {
-      showAnswer(questionArray[randomNumber]);
-      loadBirdInfo(questionArray[randomNumber]);
+      for(let bird of questionArray) {
+        if(bird.name === birdName) {
+          showAnswer(bird);
+          loadBirdInfo(bird);
+        }
+      }
+      
 
       e.target.classList.add('correct');
       correct.play();
