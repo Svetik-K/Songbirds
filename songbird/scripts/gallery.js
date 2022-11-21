@@ -120,12 +120,12 @@ window.addEventListener('click', (e) => {
 
 function showModal() {
   modal.style.display = 'flex';
-  body.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
   modal.style.display = 'none';
-  body.style.overflow = '';
+  document.body.style.overflow = '';
 }
 
 function createGalleryItem(bird) {
