@@ -46,6 +46,10 @@ body {
 
   &_start {
     padding: 30px;
+
+    @media all and(max-width: 768px) {
+      padding: 30px 20px;
+    }
   }
 
   &_quiz {

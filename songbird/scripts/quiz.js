@@ -1,4 +1,44 @@
-import { birdsData } from './birds.js';
+import { birds } from './birds.js';
+import { birdsDataEn } from './birds-en.js';
+
+const translation = {
+  'ru': {
+    'link-main': 'На главную',
+    'link-gallery': 'Галерея',
+    'button-warm-up': 'Разминка',
+    'button-passerines': 'Воробьиные',
+    'button-forest-birds': 'Лесные птицы',
+    'button-songbirds': 'Певчие птицы',
+    'button-predator-birds': 'Хищные птицы',
+    'button-sea-birds': 'Морские птицы',
+    'button-next': 'Следующий'
+  },
+  'en': {
+    'link-main': 'Start',
+    'link-gallery': 'Gallery',
+    'button-warm-up': 'Warm up',
+    'button-passerines': 'Passerines',
+    'button-forest-birds': 'Forest birds',
+    'button-songbirds': 'Songbirds',
+    'button-predator-birds': 'Predator birds',
+    'button-sea-birds': 'Sea birds',
+    'button-next': 'Next'
+  }
+}
+
+let birdsData;
+let message;
+
+const language = localStorage.lang;
+getTranslate(language);
+if(language === 'en') {
+  birdsData = birdsDataEn;
+  message = `Listen to the bird's song and choose the name of the bird whose voice was just heard.`
+}
+else if(language === 'ru') {
+  birdsData = birds;
+  message = 'Прослушайте звук, издаваемый птицей, и выберите название птицы, чей голос прозвучал.'
+}
 
 // audio players
 const audioMain = document.querySelector('.main-player__audio');
@@ -373,7 +413,7 @@ function resetBirdInfo() {
   const birdSpecies = document.querySelector('.bird-info__species');
   birdSpecies.textContent = '****** ******';
   const description = document.querySelector('.bird-info__description');
-  description.textContent = 'Прослушайте звук, издаваемый птицей, и выберите название птицы, чей голос прозвучал.';
+  description.textContent = message;
   resetPlayerInfo();
   const birdSound = document.querySelector('.info-player__audio');
   birdSound.src = '#';
@@ -398,4 +438,9 @@ function showResultsPage() {
     window.location = './results.html';
   }, 1000)
   
+}
+
+function getTranslate(lang) {
+  const dataForTranslation = document.querySelectorAll('[data-translate]');
+  dataForTranslation.forEach((item) => item.textContent = translation[lang][item.dataset.translate]);
 }

@@ -1,4 +1,42 @@
-import { birdsData } from './birds.js';
+import { birds } from './birds.js';
+import { birdsDataEn } from './birds-en.js';
+
+const translation = {
+  'ru': {
+    'link-main': 'На главную',
+    'link-quiz': 'Викторина',
+    'button-all': 'Все',
+    'button-passerines': 'Воробьиные',
+    'button-forest-birds': 'Лесные птицы',
+    'button-songbirds': 'Певчие птицы',
+    'button-predator-birds': 'Хищные птицы',
+    'button-sea-birds': 'Морские птицы',
+    'button-next': 'Следующий'
+  },
+  'en': {
+    'link-main': 'Start',
+    'link-quiz': 'Quiz',
+    'button-all': 'All',
+    'button-passerines': 'Passerines',
+    'button-forest-birds': 'Forest birds',
+    'button-songbirds': 'Songbirds',
+    'button-predator-birds': 'Predator birds',
+    'button-sea-birds': 'Sea birds',
+    'button-next': 'Next'
+  }
+}
+
+let birdsData;
+
+const language = localStorage.lang;
+getTranslate(language);
+if(language === 'en') {
+  birdsData = birdsDataEn;
+}
+else if(language === 'ru') {
+  birdsData = birds;
+}
+
 
 const categories = document.querySelector('.categories');
 const categoriesButtons = document.querySelectorAll('.categories__button');
@@ -65,7 +103,7 @@ categories.addEventListener('click', (e) => {
     e.target.classList.add('button_active');
 
     birdsArray = returnCategory(birdsData, categoryName);
-    if(categoryName === 'Все') {
+    if(categoryName === 'Все' || categoryName === 'All') {
       for(let i = 0; i < birdsData.length; i++) {
         if(i !== 0) {
           for(let item of birdsData[i]) {
@@ -120,12 +158,12 @@ window.addEventListener('click', (e) => {
 
 function showModal() {
   modal.style.display = 'flex';
-  body.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
   modal.style.display = 'none';
-  body.style.overflow = '';
+  document.body.style.overflow = '';
 }
 
 function createGalleryItem(bird) {
@@ -153,16 +191,22 @@ function createGalleryItem(bird) {
 function returnCategory(birdsData, categoryName) {
   switch(categoryName) {
     case 'Все':
+    case 'All':
       return birdsData;
     case 'Воробьиные':
+    case 'Passerines':
       return birdsData[1];
     case 'Лесные птицы':
+    case 'Forest birds':
       return birdsData[2];
     case 'Певчие птицы':
+    case 'Songbirds':
       return birdsData[3];
     case 'Хищные птицы':
+    case 'Predator birds':
       return birdsData[4];
     case 'Морские птицы':
+    case 'Sea birds':
       return birdsData[5];
   }
 }
@@ -236,4 +280,9 @@ function resetPlayer() {
   minutes = '00';
   seconds = '00';
   curTime.textContent = `${minutes}:${seconds}`;
+}
+
+function getTranslate(lang) {
+  const dataForTranslation = document.querySelectorAll('[data-translate]');
+  dataForTranslation.forEach((item) => item.textContent = translation[lang][item.dataset.translate]);
 }

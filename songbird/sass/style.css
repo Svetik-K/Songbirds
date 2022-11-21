@@ -457,6 +457,12 @@ body {
   padding: 30px;
 }
 
+@media all and (max-width: 768px) {
+  .page-container_start {
+    padding: 30px 20px;
+  }
+}
+
 .page-container_quiz {
   padding: 30px 150px 40px;
 }
@@ -885,7 +891,7 @@ body {
   transition: 0.5s;
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 800px) {
   .start-header__burger {
     display: block;
   }
@@ -937,13 +943,13 @@ body {
   align-items: center;
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 800px) {
   .start-header__navigation {
     position: absolute;
-    top: -230px;
+    top: -260px;
     right: -30px;
     width: 300px;
-    height: 200px;
+    height: 230px;
     background-color: #b18dc6;
     padding: 30px;
     transition: 0.5s;
@@ -952,11 +958,17 @@ body {
   }
 }
 
+@media all and (max-width: 768px) {
+  .start-header__navigation {
+    right: -20px;
+  }
+}
+
 .start-nav {
   display: flex;
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 800px) {
   .start-nav {
     flex-direction: column;
   }
@@ -964,6 +976,11 @@ body {
 
 .start-nav__item {
   padding-left: 50px;
+  color: #fffcf7;
+  font-size: 2.2rem;
+  line-height: 2.2rem;
+  font-weight: 700;
+  font-style: normal;
 }
 
 @media all and (max-width: 1000px) {
@@ -972,7 +989,7 @@ body {
   }
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 800px) {
   .start-nav__item {
     padding-left: 0;
     margin-bottom: 20px;
@@ -980,8 +997,8 @@ body {
 }
 
 .start-nav__link {
-  font-size: 2.8rem;
-  line-height: 2.8rem;
+  font-size: 2.2rem;
+  line-height: 2.2rem;
   font-weight: 700;
   font-style: normal;
   color: #fffcf7;
@@ -990,6 +1007,20 @@ body {
 }
 
 .start-nav__link:hover {
+  color: #9a3f9a;
+}
+
+.start-nav__lang {
+  font-size: 2.2rem;
+  line-height: 2.2rem;
+  font-weight: 700;
+  font-style: normal;
+  color: #fffcf7;
+  text-decoration: none;
+  transition: .5s;
+}
+
+.start-nav__lang:hover {
   color: #9a3f9a;
 }
 
@@ -1084,6 +1115,7 @@ body {
   display: flex;
   text-align: center;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   transition: 0.5s;
 }

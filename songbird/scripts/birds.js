@@ -1,4 +1,4 @@
-const birdsData = [
+const birds = [
     [       
       {
         id: 1,
@@ -301,4 +301,4 @@ const birdsData = [
     ]
   ];
   
- export { birdsData };
+ export { birds };
