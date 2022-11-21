@@ -177,7 +177,7 @@ answers.addEventListener('click', (e) => {
   const answersBlock = e.target.parentElement.parentElement;
   if(answersBlock.classList.contains('answers')) {
     const birdName = e.target.textContent;
-    if(birdName === correctAnswer) {
+    if(birdName === correctAnswer && isFinished === false) {
       showAnswer(questionArray[randomNumber]);
       loadBirdInfo(questionArray[randomNumber]);
 
