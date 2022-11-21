@@ -4,6 +4,8 @@ const categories = document.querySelector('.categories');
 const categoriesButtons = document.querySelectorAll('.categories__button');
 const gallery = document.querySelector('.gallery-main__items');
 const modal = document.querySelector('.modal');
+const closeButton = document.querySelector('.button_close');
+const page = document.querySelector('.page-container_gallery');
 
 let birdsArray;
 
@@ -86,7 +88,7 @@ gallery.addEventListener('click', (e) => {
       category.forEach(item => {
         if(item.name === birdName) {
           loadBirdInfo(item);
-          modal.style.display = 'flex';
+          showModal();
         }
       })
     }
@@ -97,19 +99,34 @@ gallery.addEventListener('click', (e) => {
       category.forEach(item => {
         if(item.name === birdName) {
           loadBirdInfo(item);
-          modal.style.display = 'flex';
+          showModal();
         }
       })
     }
   }
 })
 
+closeButton.addEventListener('click', (e) => {
+  closeModal();
+  e.preventDefault();
+})
+
 window.addEventListener('click', (e) => {
   if(e.target.classList.contains('modal')) {
-    modal.style.display = 'none';
+    closeModal();
     resetPlayer();
   }
 })
+
+function showModal() {
+  modal.style.display = 'flex';
+  body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+  body.style.overflow = '';
+}
 
 function createGalleryItem(bird) {
   const galleryItem = document.createElement('div');
